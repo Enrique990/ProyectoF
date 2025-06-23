@@ -1,0 +1,15 @@
+[
+    {
+        "nombre": "Kevin",
+        "equipo": {
+            "nombre": "Equipo",
+            "miembros": [
+                {
+                    "nombre": "Carlos",
+                    "rol": "Diseñador",
+                    "tareas": []
+                }
+            ]
+        }
+    }
+]

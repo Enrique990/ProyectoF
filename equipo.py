@@ -1,22 +1,75 @@
-class Persona:
-    def __init__(self, nombre, rol):
-        self.nombre = nombre
-        self.rol = rol
-        self.hijos = []
-        self.tareas_asignadas = []
+from modelos import Supervisor, Equipo, Persona
+from persistencia import guardar_equipo, cargar_equipo
 
-    def __str__(self):
-        return f"{self.nombre} ({self.rol})"
+# Lista en memoria con supervisores
+supervisores = []
 
-class Equipo:
-    def __init__(self):
-        self.raiz = None
+# Cargar datos al iniciar
+def cargar_datos_equipo():
+    global supervisores
+    datos = cargar_equipo()
+    supervisores = [Supervisor.from_dict(s) for s in datos]
 
-    def agregar_persona(self, nombre, rol, nombre_superior=None):
-        ...
-    
-    def mostrar_estructura(self):
-        ...
-    
-    def buscar_por_rol(self, nodo, nombre):
-        ...
+# Guardar datos actualizados
+def guardar_datos_equipo():
+    datos = [s.to_dict() for s in supervisores]
+    guardar_equipo(datos)
+
+# Crear un nuevo supervisor
+def crear_supervisor(nombre_supervisor, nombre_equipo):
+    for s in supervisores:
+        if s.nombre.lower() == nombre_supervisor.lower():
+            return False  # Supervisor ya existe
+        if s.equipo and s.equipo.nombre.lower() == nombre_equipo.lower():
+            return False  # Nombre de equipo duplicado
+
+    supervisor = Supervisor(nombre_supervisor)
+    equipo_obj = Equipo(nombre_equipo)
+    supervisor.asignar_equipo(equipo_obj)
+    supervisores.append(supervisor)
+    guardar_datos_equipo()
+    return True
+
+# Agregar un miembro a un equipo
+def agregar_miembro(nombre_supervisor, nombre_persona, rol):
+    # Verifica si ya existe ese nombre en cualquier equipo
+    for s in supervisores:
+        if s.equipo:
+            for m in s.equipo.miembros:
+                if m.nombre.lower() == nombre_persona.lower():
+                    return False  # Ya existe
+    for s in supervisores:
+        if s.nombre.lower() == nombre_supervisor.lower():
+            persona = Persona(nombre_persona, rol)
+            s.equipo.agregar_miembro(persona)
+            guardar_datos_equipo()
+            return True
+    return False
+
+# Listar toda la estructura
+def mostrar_estructura():
+    for s in supervisores:
+        print(f"Supervisor: {s.nombre}")
+        if s.equipo:
+            print(f"  Equipo: {s.equipo.nombre}")
+            for m in s.equipo.miembros:
+                print(f"    Miembro: {m.nombre} (rol: {m.rol}, tareas: {len(m.tareas)})")
+        else:
+            print("  (sin equipo asignado)")
+
+# Eliminar supervisor
+def eliminar_supervisor(nombre):
+    global supervisores
+    supervisores = [s for s in supervisores if s.nombre != nombre]
+    guardar_datos_equipo()
+
+# Eliminar miembro
+def eliminar_miembro(nombre_supervisor, nombre_miembro):
+    for s in supervisores:
+        if s.nombre == nombre_supervisor and s.equipo:
+            s.equipo.miembros = [
+                m for m in s.equipo.miembros if m.nombre != nombre_miembro
+            ]
+            guardar_datos_equipo()
+            return True
+    return False
