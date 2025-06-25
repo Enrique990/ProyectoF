@@ -1,23 +1,39 @@
-from persistencia import cargar_roles, guardar_roles
+import json
+import os
 
-def listar_roles():
-    """Devuelve la lista actual de roles."""
-    return cargar_roles()
+archivo_roles = "data/roles.json"
+roles = []
 
-def crear_rol(nuevo_rol):
-    """Agrega un nuevo rol si no existe aún."""
-    roles = cargar_roles()
-    if nuevo_rol not in roles:
-        roles.append(nuevo_rol)
-        guardar_roles(roles)
+def cargar_datos_roles():
+    global roles
+    if os.path.exists(archivo_roles):
+        with open(archivo_roles, "r", encoding="utf-8") as f:
+            roles = json.load(f)
+    else:
+        roles = []
+
+def guardar_datos_roles():
+    os.makedirs(os.path.dirname(archivo_roles), exist_ok=True)
+    with open(archivo_roles, "w", encoding="utf-8") as f:
+        json.dump(roles, f, indent=4, ensure_ascii=False)
+
+def agregar_rol(nombre):
+    nombre = nombre.strip()
+    nombre = nombre.strip()
+    if not nombre:
+        return False
+    # Comparación insensible a mayúsculas
+    existentes = [r.lower() for r in roles]
+    if nombre.lower() in existentes:
+        return False
+    # Guards el rol con formato uniforme, por ejemplo, capitalizado
+    roles.append(nombre.capitalize())
+    guardar_datos_roles()
+    return True
+
+def eliminar_rol(nombre):
+    if nombre in roles:
+        roles.remove(nombre)
+        guardar_datos_roles()
         return True
-    return False  # El rol ya existe
-
-def eliminar_rol(nombre_rol):
-    """Elimina un rol por nombre si existe."""
-    roles = cargar_roles()
-    if nombre_rol in roles:
-        roles = [r for r in roles if r != nombre_rol]
-        guardar_roles(roles)
-        return True
-    return False  # El rol no estaba
+    return False

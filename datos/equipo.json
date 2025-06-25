@@ -1,11 +1,34 @@
 [
     {
-        "nombre": "Kevin",
+        "nombre": "Ale",
         "equipo": {
-            "nombre": "Equipo",
+            "nombre": "Anores",
             "miembros": [
                 {
                     "nombre": "Carlos",
+                    "rol": "Programador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Mateo",
+                    "rol": "Diseñador",
+                    "tareas": []
+                }
+            ]
+        }
+    },
+    {
+        "nombre": "Kevin",
+        "equipo": {
+            "nombre": "Suicidio",
+            "miembros": [
+                {
+                    "nombre": "Camila",
+                    "rol": "Programador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Alberto",
                     "rol": "Diseñador",
                     "tareas": []
                 }
