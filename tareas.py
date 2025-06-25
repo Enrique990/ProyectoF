@@ -1,58 +1,69 @@
-from persistencia import cargar_tareas, guardar_tareas, cargar_equipo, guardar_equipo
-from modelos import Tarea, Persona, Supervisor
-from equipo import supervisores  # asumimos que ya se cargaron desde equipo
+import json, os
+from collections import defaultdict
 
-# Crear y agregar tarea a la lista general
-def crear_tarea(descripcion, rol_requerido, prioridad="media"):
-    nueva = Tarea(descripcion, rol_requerido, prioridad, estado="sin asignar")
-    tareas = [Tarea.from_dict(t) for t in cargar_tareas()]
-    tareas.append(nueva)
-    guardar_tareas([t.to_dict() for t in tareas])
+archivo_tareas = "data/tareas.json"
+tareas = []
 
-# Listar tareas actuales
-def listar_tareas():
-    return [Tarea.from_dict(t) for t in cargar_tareas()]
+def cargar_datos_tareas():
+    global tareas
+    if os.path.exists(archivo_tareas):
+        with open(archivo_tareas, "r", encoding="utf-8") as f:
+            tareas = json.load(f)
+    else:
+        tareas = []
 
-# Asignar automáticamente tareas no asignadas
-def asignar_tareas():
-    tareas = [Tarea.from_dict(t) for t in cargar_tareas()]
-    pendientes = [t for t in tareas if t.estado == "sin asignar"]
+def guardar_datos_tareas():
+    os.makedirs(os.path.dirname(archivo_tareas), exist_ok=True)
+    with open(archivo_tareas, "w", encoding="utf-8") as f:
+        json.dump(tareas, f, indent=4, ensure_ascii=False)
 
-    for tarea in pendientes:
-        for s in supervisores:
-            equipo = s.equipo
-            if not equipo:
+def agregar_tarea(nombre, prioridad, descripcion, rol):
+    nombre = nombre.strip()
+    descripcion = descripcion.strip()
+    rol = rol.strip()
+    if nombre and rol:
+        tareas.append({
+            "nombre": nombre,
+            "descripcion": descripcion,
+            "prioridad": prioridad,
+            "rol": rol,
+            "asignada": False,
+            "miembro": None,
+            "estado": "pendiente"
+        })
+        guardar_datos_tareas()
+        return True
+    return False
+
+def asignar_tareas_por_rol_y_prioridad(miembros):
+    cargar_datos_tareas()
+    no_asignadas = [t for t in tareas if not t["asignada"]]
+
+    if not miembros or not no_asignadas:
+        return 0  # nada que hacer
+
+    # Inicializar conteo de tareas por miembro
+    conteo = defaultdict(int)
+    for t in tareas:
+        if t["asignada"]:
+            conteo[t["miembro"]] += 1
+
+    prioridades = ["Alta", "Media", "Baja"]
+    asignadas = 0
+
+    for prioridad in prioridades:
+        for tarea in [t for t in no_asignadas if t["prioridad"] == prioridad]:
+            # Buscar miembros con el rol requerido
+            disponibles = [m for m in miembros if m["rol"] == tarea["rol"]]
+            if not disponibles:
                 continue
 
-            posibles = [p for p in equipo.miembros if p.rol == tarea.rol_requerido]
-            if not posibles:
-                continue
+            # Seleccionar el que tenga menos carga
+            menos_cargado = min(disponibles, key=lambda m: conteo[m["nombre"]])
+            tarea["asignada"] = True
+            tarea["miembro"] = menos_cargado["nombre"]
+            conteo[menos_cargado["nombre"]] += 1
+            asignadas += 1
 
-            menos_ocupado = min(posibles, key=lambda p: len(p.tareas))
-            menos_ocupado.asignar_tarea(tarea.descripcion)
-            tarea.estado = "en proceso"
-            break  # tarea asignada, salimos del bucle
-
-    guardar_tareas([t.to_dict() for t in tareas])
-    guardar_equipo([s.to_dict() for s in supervisores])
-
-# Cambiar estado de una tarea
-def cambiar_estado_tarea(indice, nuevo_estado):
-    tareas = [Tarea.from_dict(t) for t in cargar_tareas()]
-    if 0 <= indice < len(tareas):
-        tareas[indice].estado = nuevo_estado
-        guardar_tareas([t.to_dict() for t in tareas])
-
-# Cambiar prioridad de una tarea
-def cambiar_prioridad_tarea(indice, nueva_prioridad):
-    tareas = [Tarea.from_dict(t) for t in cargar_tareas()]
-    if 0 <= indice < len(tareas):
-        tareas[indice].prioridad = nueva_prioridad
-        guardar_tareas([t.to_dict() for t in tareas])
-
-# Eliminar tarea
-def eliminar_tarea(indice):
-    tareas = [Tarea.from_dict(t) for t in cargar_tareas()]
-    if 0 <= indice < len(tareas):
-        tareas.pop(indice)
-        guardar_tareas([t.to_dict() for t in tareas])
+    guardar_datos_tareas()
+    return asignadas

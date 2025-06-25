@@ -60,8 +60,12 @@ def mostrar_estructura():
 # Eliminar supervisor
 def eliminar_supervisor(nombre):
     global supervisores
-    supervisores = [s for s in supervisores if s.nombre != nombre]
-    guardar_datos_equipo()
+    for s in supervisores:
+        if s.nombre.strip().lower() == nombre.strip().lower():
+            supervisores.remove(s)
+            guardar_datos_equipo()
+            return True
+    return False
 
 # Eliminar miembro
 def eliminar_miembro(nombre_supervisor, nombre_miembro):
@@ -73,3 +77,17 @@ def eliminar_miembro(nombre_supervisor, nombre_miembro):
             guardar_datos_equipo()
             return True
     return False
+
+# Modificar rol de miembro
+def modificar_rol_miembro(nombre_supervisor, nombre_miembro, nuevo_rol):
+    for s in supervisores:
+        if s.nombre.lower() == nombre_supervisor.lower():
+            for m in s.equipo.miembros:
+                if m.nombre.lower() == nombre_miembro.lower():
+                    m.rol = nuevo_rol
+                    guardar_datos_equipo()
+                    return True
+    return False
+
+def obtener_todos_los_miembros(equipo):
+    return [{"nombre": m.nombre, "rol": m.rol} for m in equipo.miembros]
