@@ -612,6 +612,7 @@ def crear_menu_miembros():
             exito = equipo.agregar_miembro(sup, nombre, rol)
             if exito:
                 mensaje.config(text="Miembro agregado correctamente.", fg="green")
+                messagebox.showinfo("Miembro agregado", "Recargar programa para asignar tareas a este miembro")
                 supervisor_combo.set("")
                 entrada_nombre.delete(0, tk.END)
                 rol_combo.set("")
@@ -707,6 +708,7 @@ def crear_menu_miembros():
             if confirmado:
                 mensaje.config(text="Miembro eliminado.", fg="green")
                 supervisor_combo.set("")
+                messagebox.showwarning("Miembro eliminado", "Miembro eliminado, las tareas asignadas a este miembro necesitan ser modificadas")
                 actualizar_miembros(None)
             else:
                 mensaje.config(text="No se pudo eliminar.", fg="red")
