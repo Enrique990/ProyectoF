@@ -5,8 +5,8 @@
         "prioridad": "Alta",
         "rol": "Diseñador",
         "asignada": true,
-        "miembro": "Mateo",
-        "estado": "pendiente"
+        "estado": "pendiente",
+        "miembro": "Mateo"
     },
     {
         "nombre": "Matenme",
@@ -14,8 +14,8 @@
         "prioridad": "Media",
         "rol": "Diseñador",
         "asignada": true,
-        "miembro": "Alberto",
-        "estado": "pendiente"
+        "estado": "en proceso",
+        "miembro": "Alberto"
     },
     {
         "nombre": "Matenme2",
@@ -23,8 +23,8 @@
         "prioridad": "Media",
         "rol": "Diseñador",
         "asignada": true,
-        "miembro": "Mateo",
-        "estado": "pendiente"
+        "estado": "pendiente",
+        "miembro": "Mateo"
     },
     {
         "nombre": "por favor",
@@ -32,8 +32,8 @@
         "prioridad": "Media",
         "rol": "Programador",
         "asignada": true,
-        "miembro": "Camila",
-        "estado": "pendiente"
+        "estado": "pendiente",
+        "miembro": "Carlos"
     },
     {
         "nombre": "estoyharto",
@@ -41,8 +41,8 @@
         "prioridad": "Alta",
         "rol": "Programador",
         "asignada": true,
-        "miembro": "Carlos",
-        "estado": "pendiente"
+        "estado": "pendiente",
+        "miembro": "Carlos"
     },
     {
         "nombre": "hablo en serio",
@@ -50,8 +50,8 @@
         "prioridad": "Media",
         "rol": "Programador",
         "asignada": true,
-        "miembro": "Carlos",
-        "estado": "pendiente"
+        "estado": "pendiente",
+        "miembro": "Camila"
     },
     {
         "nombre": "reparar el proyecto final",
@@ -59,16 +59,25 @@
         "prioridad": "Alta",
         "rol": "Programador",
         "asignada": true,
-        "miembro": "Camila",
+        "estado": "pendiente",
+        "miembro": "Camila"
+    },
+    {
+        "nombre": "Jairo",
+        "descripcion": "arreglar a Jairo",
+        "prioridad": "Alta",
+        "rol": "Diseñador",
+        "asignada": true,
+        "miembro": "Alberto",
         "estado": "pendiente"
     },
     {
-        "nombre": "matarme",
-        "descripcion": "ahorita",
+        "nombre": "hola",
+        "descripcion": "hola",
         "prioridad": "Alta",
         "rol": "Programador",
-        "asignada": true,
-        "miembro": "Carlos",
+        "asignada": false,
+        "miembro": null,
         "estado": "pendiente"
     }
 ]

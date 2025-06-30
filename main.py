@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import ttk, Toplevel, messagebox
+from tkinter import ttk, Toplevel, messagebox, END, Listbox
 import equipo, roles, tareas
 import json
 from modelos import Equipo , Supervisor
 from excel_export import exportar_tareas_a_excel
+from tkinter.ttk import Combobox
 
 # Cargar supervisor desde archivo JSON
 with open("datos/equipo.json", "r", encoding="utf-8") as archivo:
@@ -293,6 +294,7 @@ def crear_menu_tareas():
                     combo["values"] = [t["nombre"] for t in tareas.tareas if not t["asignada"]]
                     combo.set("")
                     entrada_nombre.delete(0, tk.END)
+                    combo_rol.set("")
                     combo_prioridad.set("")
                     texto.delete("1.0", tk.END)
                     return
@@ -369,95 +371,74 @@ def crear_menu_tareas():
     # Asignar tareas automáticamente
     def asignar_tareas_automaticamente():
         equipo.cargar_datos_equipo()
-        miembros = equipo.obtener_todos_los_miembros(equipos)  # Esta debe devolver lista de dicts con nombre y rol
-        for persona in miembros:
-            print(f"Miembro: {persona['nombre']} (rol: {persona['rol']})")
+        miembros = equipo.obtener_todos_los_miembros(equipos)
 
         if not miembros:
             messagebox.showinfo("Equipo vacío", "No hay miembros en el equipo.")
             return
 
         cantidad = tareas.asignar_tareas_por_rol_y_prioridad(miembros)
+
         if cantidad > 0:
-            messagebox.showinfo("Asignación completa", f"Se asignaron {cantidad} tarea(s) automáticamente.")
+            tareas.cargar_datos_tareas()
+            equipo.cargar_datos_equipo()
+            for sup in equipo.supervisores:
+                for persona in sup.equipo.miembros:
+                    persona.tareas.clear()
+            for t in tareas.tareas:
+                if t.get("asignada"):
+                    for sup in equipo.supervisores:
+                        for persona in sup.equipo.miembros:
+                            if persona.nombre == t["miembro"]:
+                                persona.asignar_tarea(t["nombre"])
+            equipo.guardar_datos_equipo()
+            messagebox.showinfo(
+                "Asignación completa",
+                f"Se asignaron {cantidad} tarea(s) automáticamente\n"
+            )
         else:
             messagebox.showinfo("Sin asignaciones", "No hay tareas que se puedan asignar.")
     tk.Button(frame, text="Asignar tareas automáticamente", width=30, command=asignar_tareas_automaticamente).pack(pady=2)
     
     # Ver tareas asignadas por persona
     def mostrar_tareas_por_persona():
-        equipos.equipo  # Ya debería estar cargado
-        miembros = equipos.equipo.miembros
-
-        if not miembros:
-            messagebox.showinfo("Equipo vacío", "No hay miembros para mostrar.")
-            return
-
+        equipo.cargar_datos_equipo()
         ventana = Toplevel()
         ventana.title("Tareas por Persona")
-        ventana.geometry("500x400")
-
-        tk.Label(ventana, text="Seleccioná un miembro:").pack(pady=5)
-        seleccion = tk.StringVar()
-        combo = ttk.Combobox(ventana, textvariable=seleccion, state="readonly")
-        combo["values"] = [m.nombre for m in miembros]
-        combo.pack(pady=5)
-
-        area = tk.Text(ventana, width=60, height=12)
-        area.pack(pady=5)
-
-        combo_tareas = ttk.Combobox(ventana, state="readonly")
-        combo_tareas.pack(pady=2)
-
-        mensaje = tk.Label(ventana, text="", fg="green")
-        mensaje.pack(pady=5)
-
-        def mostrar_tareas(event=None):
-            nombre = seleccion.get()
-            area.config(state=tk.NORMAL)
-            area.delete("1.0", tk.END)
-            combo_tareas.set("")
-            combo_tareas["values"] = []
-
-            tareas.cargar_datos_tareas()
-            tareas_persona = [t for t in tareas.tareas if t["asignada"] and t["miembro"] == nombre]
-
-            for t in tareas_persona:
-                area.insert(tk.END,
-                    f"- {t['nombre']} (Prioridad: {t['prioridad']}, Estado: {t['estado']}, Rol: {t['rol']})\n"
-                    f"  {t['descripcion']}\n\n"
-                )
-            area.config(state=tk.DISABLED)
-
-            combo_tareas["values"] = [t["nombre"] for t in tareas_persona]
-
-        combo.bind("<<ComboboxSelected>>", mostrar_tareas)
-
-        def finalizar_tarea():
-            nombre = seleccion.get()
-            nombre_tarea = combo_tareas.get()
-
-            if not nombre or not nombre_tarea:
-                mensaje.config(text="Seleccioná una persona y una tarea.", fg="red")
+        nombres = [p.nombre for sup in equipo.supervisores for p in sup.equipo.miembros]
+        combo = Combobox(ventana, values=nombres, state="readonly")
+        combo.pack(padx=10, pady=5)
+        listbox = Listbox(ventana, width=50, height=10)
+        listbox.pack(padx=10, pady=5)
+        def on_select(event):
+            seleccionado = combo.get()
+            listbox.delete(0, END)
+            for sup in equipo.supervisores:
+                for persona in sup.equipo.miembros:
+                    if persona.nombre == seleccionado:
+                        for tarea in persona.tareas:
+                            listbox.insert(END, tarea)
+                        return
+        combo.bind("<<ComboboxSelected>>", on_select)
+        def finalizar():
+            seleccionado = combo.get()
+            indices = listbox.curselection()
+            if not indices:
                 return
+            index = indices[0]
+            tarea = listbox.get(index)
+            for sup in equipo.supervisores:
+                for persona in sup.equipo.miembros:
+                    if persona.nombre == seleccionado and tarea in persona.tareas:
+                        persona.tareas.remove(tarea)
+                        equipo.guardar_datos_equipo()
+                        listbox.delete(index)
+                        messagebox.showinfo("Tarea finalizada", f"La tarea '{tarea}' ha sido finalizada.")
+                        return
 
-            for t in tareas.tareas:
-                if t["nombre"] == nombre_tarea and t["miembro"] == nombre and t["asignada"]:
-                    confirmar = messagebox.askyesno(
-                        "Confirmar finalización",
-                        f"¿Seguro que querés finalizar la tarea \"{t['nombre']}\"?"
-                    )
-                    if confirmar:
-                        tareas.tareas.remove(t)
-                        tareas.guardar_datos_tareas()
-                        mensaje.config(text="Tarea finalizada y eliminada.", fg="green")
-                        mostrar_tareas()
-                    return
-
-            mensaje.config(text="No se pudo finalizar la tarea.", fg="red")
-
-        tk.Button(ventana, text="Marcar como finalizada", command=finalizar_tarea).pack(pady=4)
-    tk.Button(frame, text="Ver tareas asignadas por persona", width=30, command=mostrar_tareas_por_persona).pack(pady=2)
+        btn_finalizar = tk.Button(ventana, text="Finalizar tarea", command=finalizar)
+        btn_finalizar.pack(padx=10, pady=5)
+    tk.Button(frame, text="Ver y finalizar tareas", width=30, command=mostrar_tareas_por_persona).pack(pady=2)
     
     # Exportar informe a Excel
     def exportar_tareas():

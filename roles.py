@@ -1,7 +1,7 @@
 import json
 import os
 
-archivo_roles = "data/roles.json"
+archivo_roles = "datos/roles.json"
 roles = []
 
 def cargar_datos_roles():

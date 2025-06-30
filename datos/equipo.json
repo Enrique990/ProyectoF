@@ -7,12 +7,16 @@
                 {
                     "nombre": "Carlos",
                     "rol": "Programador",
-                    "tareas": []
+                    "tareas": [
+                        "estoyharto"
+                    ]
                 },
                 {
                     "nombre": "Mateo",
                     "rol": "Diseñador",
-                    "tareas": []
+                    "tareas": [
+                        "Terminar Proyecto"
+                    ]
                 }
             ]
         }
@@ -25,11 +29,22 @@
                 {
                     "nombre": "Camila",
                     "rol": "Programador",
-                    "tareas": []
+                    "tareas": [
+                        "hablo en serio",
+                        "reparar el proyecto final"
+                    ]
                 },
                 {
                     "nombre": "Alberto",
                     "rol": "Diseñador",
+                    "tareas": [
+                        "Matenme",
+                        "Jairo"
+                    ]
+                },
+                {
+                    "nombre": "Jairo",
+                    "rol": "Programador",
                     "tareas": []
                 }
             ]

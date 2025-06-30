@@ -1,7 +1,7 @@
 import json, os
 from collections import defaultdict
 
-archivo_tareas = "data/tareas.json"
+archivo_tareas = "datos/tareas.json"
 tareas = []
 
 def cargar_datos_tareas():

@@ -2,6 +2,7 @@ from modelos import Supervisor, Equipo, Persona
 from persistencia import guardar_equipo, cargar_equipo
 
 # Lista en memoria con supervisores
+archivo_equipos = "datos/.json"
 supervisores = []
 
 # Cargar datos al iniciar
@@ -90,6 +91,7 @@ def modificar_rol_miembro(nombre_supervisor, nombre_miembro, nuevo_rol):
     return False
 
 def obtener_todos_los_miembros(equipos):
+    # return [{"nombre": m.nombre, "rol": m.rol} for m in equipo.miembros]
     miembros = []
     for supervisor in equipos:
         for miembro in supervisor.equipo.miembros :
