@@ -89,5 +89,10 @@ def modificar_rol_miembro(nombre_supervisor, nombre_miembro, nuevo_rol):
                     return True
     return False
 
-def obtener_todos_los_miembros(equipo):
-    return [{"nombre": m.nombre, "rol": m.rol} for m in equipo.miembros]
+def obtener_todos_los_miembros(equipos):
+    miembros = []
+    for supervisor in equipos:
+        for miembro in supervisor.equipo.miembros :
+           miembros.append({"nombre": miembro.nombre, "rol": miembro.rol}) 
+
+    return miembros

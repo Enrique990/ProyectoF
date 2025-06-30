@@ -4,8 +4,8 @@
         "descripcion": "Programar clases",
         "prioridad": "Alta",
         "rol": "Diseñador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Mateo",
         "estado": "pendiente"
     },
     {
@@ -13,8 +13,8 @@
         "descripcion": "matenme",
         "prioridad": "Media",
         "rol": "Diseñador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Alberto",
         "estado": "pendiente"
     },
     {
@@ -22,8 +22,8 @@
         "descripcion": "matenme de nuevo",
         "prioridad": "Media",
         "rol": "Diseñador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Mateo",
         "estado": "pendiente"
     },
     {
@@ -31,8 +31,8 @@
         "descripcion": "por favor matenme",
         "prioridad": "Media",
         "rol": "Programador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Camila",
         "estado": "pendiente"
     },
     {
@@ -40,8 +40,8 @@
         "descripcion": "me doy de baja de la universidad",
         "prioridad": "Alta",
         "rol": "Programador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Carlos",
         "estado": "pendiente"
     },
     {
@@ -49,8 +49,26 @@
         "descripcion": "ya killeenme por favor",
         "prioridad": "Media",
         "rol": "Programador",
-        "asignada": false,
-        "miembro": null,
+        "asignada": true,
+        "miembro": "Carlos",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "reparar el proyecto final",
+        "descripcion": "intento de reparación",
+        "prioridad": "Alta",
+        "rol": "Programador",
+        "asignada": true,
+        "miembro": "Camila",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "matarme",
+        "descripcion": "ahorita",
+        "prioridad": "Alta",
+        "rol": "Programador",
+        "asignada": true,
+        "miembro": "Carlos",
         "estado": "pendiente"
     }
 ]

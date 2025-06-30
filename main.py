@@ -2,13 +2,13 @@ import tkinter as tk
 from tkinter import ttk, Toplevel, messagebox
 import equipo, roles, tareas
 import json
-from modelos import Equipo
+from modelos import Equipo , Supervisor
 from excel_export import exportar_tareas_a_excel
 
 # Cargar supervisor desde archivo JSON
 with open("datos/equipo.json", "r", encoding="utf-8") as archivo:
-    equipos_raw = json.load(archivo)
-    equipos = [Equipo.from_dict(d) for d in equipos_raw]
+    supervisor_raw = json.load(archivo)
+    equipos = [Supervisor.from_dict(d) for d in supervisor_raw]
 
 # ==== Ventana principal ====
 ventana = tk.Tk()
@@ -369,14 +369,16 @@ def crear_menu_tareas():
     # Asignar tareas automáticamente
     def asignar_tareas_automaticamente():
         equipo.cargar_datos_equipo()
-        miembros = equipo.obtener_todos_los_miembros(equipos.equipo)  # Esta debe devolver lista de dicts con nombre y rol
+        miembros = equipo.obtener_todos_los_miembros(equipos)  # Esta debe devolver lista de dicts con nombre y rol
+        for persona in miembros:
+            print(f"Miembro: {persona['nombre']} (rol: {persona['rol']})")
 
         if not miembros:
             messagebox.showinfo("Equipo vacío", "No hay miembros en el equipo.")
             return
 
         cantidad = tareas.asignar_tareas_por_rol_y_prioridad(miembros)
-        if cantidad:
+        if cantidad > 0:
             messagebox.showinfo("Asignación completa", f"Se asignaron {cantidad} tarea(s) automáticamente.")
         else:
             messagebox.showinfo("Sin asignaciones", "No hay tareas que se puedan asignar.")
