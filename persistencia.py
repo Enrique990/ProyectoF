@@ -1,7 +1,7 @@
 import json
 import os
 
-DATOS_DIR = "data"
+DATOS_DIR = "datos"
 
 def _ruta_archivo(nombre):
     return os.path.join(DATOS_DIR, nombre)

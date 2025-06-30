@@ -125,6 +125,7 @@ def crear_menu_tareas():
             if exito:
                 mensaje.config(text="Tarea agregada con éxito.", fg="green")
                 entrada.delete(0, tk.END)
+                combo_rol.set("")
                 combo.set("")
                 texto.delete("1.0", tk.END)
             else:
@@ -420,25 +421,7 @@ def crear_menu_tareas():
                             listbox.insert(END, tarea)
                         return
         combo.bind("<<ComboboxSelected>>", on_select)
-        def finalizar():
-            seleccionado = combo.get()
-            indices = listbox.curselection()
-            if not indices:
-                return
-            index = indices[0]
-            tarea = listbox.get(index)
-            for sup in equipo.supervisores:
-                for persona in sup.equipo.miembros:
-                    if persona.nombre == seleccionado and tarea in persona.tareas:
-                        persona.tareas.remove(tarea)
-                        equipo.guardar_datos_equipo()
-                        listbox.delete(index)
-                        messagebox.showinfo("Tarea finalizada", f"La tarea '{tarea}' ha sido finalizada.")
-                        return
-
-        btn_finalizar = tk.Button(ventana, text="Finalizar tarea", command=finalizar)
-        btn_finalizar.pack(padx=10, pady=5)
-    tk.Button(frame, text="Ver y finalizar tareas", width=30, command=mostrar_tareas_por_persona).pack(pady=2)
+    tk.Button(frame, text="Ver tareas por persona", width=30, command=mostrar_tareas_por_persona).pack(pady=2)
     
     # Exportar informe a Excel
     def exportar_tareas():

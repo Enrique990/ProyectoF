@@ -64,6 +64,5 @@ def asignar_tareas_por_rol_y_prioridad(miembros):
             tarea["miembro"] = menos_cargado["nombre"]
             conteo[menos_cargado["nombre"]] += 1
             asignadas += 1
-    print(f"Total de tareas asignadas: {asignadas}")
     guardar_datos_tareas()
     return asignadas
