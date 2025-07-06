@@ -256,7 +256,7 @@ def crear_menu_ver_tareas():
                     return
 
         combo.bind("<<ComboboxSelected>>", on_select)
-    tk.Button(frame, text="Tareas por equipo", width=30,
+    tk.Button(frame, text="Tareas por equipo/supervisor", width=30,
           command=lambda: mostrar_tareas_por_equipo() if hay_tareas_asignadas()
           else messagebox.showinfo("Sin tareas asignadas", "No hay tareas asignadas.")
     ).pack(pady=4)
@@ -650,6 +650,7 @@ def crear_menu_tareas():
                             combo["values"] = [f"{t['nombre']} ({t['miembro']})" for t in tareas.tareas if t["asignada"]]
                             combo.set("")
                             combo_estado.set("")
+                            combo_miembro.set("")
                         return
                     else:
                         t["estado"] = nuevo_estado

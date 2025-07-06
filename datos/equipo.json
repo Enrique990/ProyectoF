@@ -2,12 +2,46 @@
     {
         "nombre": "Enrique",
         "equipo": {
-            "nombre": "Algoritmos",
+            "nombre": "Equipo 1",
             "miembros": [
                 {
-                    "nombre": "Kevin",
-                    "rol": "Programador",
+                    "nombre": "Santiago",
+                    "rol": "Diseñador",
                     "tareas": []
+                },
+                {
+                    "nombre": "Hildebrando",
+                    "rol": "Tester",
+                    "tareas": []
+                }
+            ]
+        }
+    },
+    {
+        "nombre": "Alberto",
+        "equipo": {
+            "nombre": "Equipo 2",
+            "miembros": [
+                {
+                    "nombre": "Roberto",
+                    "rol": "Programador",
+                    "tareas": [
+                        "Refactorizar código"
+                    ]
+                },
+                {
+                    "nombre": "Carlos",
+                    "rol": "Diseñador",
+                    "tareas": [
+                        "Diseñar interfaz"
+                    ]
+                },
+                {
+                    "nombre": "Ruben",
+                    "rol": "Tester",
+                    "tareas": [
+                        "Test de rendimiento"
+                    ]
                 }
             ]
         }
@@ -15,8 +49,28 @@
     {
         "nombre": "Juan",
         "equipo": {
-            "nombre": "Estructuras",
-            "miembros": []
+            "nombre": "Equipo 3",
+            "miembros": [
+                {
+                    "nombre": "Adrián",
+                    "rol": "Programador",
+                    "tareas": [
+                        "Implementar login"
+                    ]
+                },
+                {
+                    "nombre": "Eduardo",
+                    "rol": "Diseñador",
+                    "tareas": [
+                        "Crear prototipo"
+                    ]
+                },
+                {
+                    "nombre": "Mario",
+                    "rol": "Tester",
+                    "tareas": []
+                }
+            ]
         }
     }
 ]

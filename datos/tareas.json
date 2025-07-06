@@ -1,1 +1,47 @@
-[]
+[
+    {
+        "nombre": "Implementar login",
+        "descripcion": "Implementar login",
+        "prioridad": "Alta",
+        "rol": "Programador",
+        "asignada": true,
+        "miembro": "Adrián",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Diseñar interfaz",
+        "descripcion": "Diseñar la interfaz del proyecto",
+        "prioridad": "Media",
+        "rol": "Diseñador",
+        "asignada": true,
+        "miembro": "Carlos",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Refactorizar código",
+        "descripcion": "Refactorizar el código pendiente",
+        "prioridad": "Baja",
+        "rol": "Programador",
+        "asignada": true,
+        "miembro": "Roberto",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Test de rendimiento",
+        "descripcion": "Testear todo el proyecto para encontrar fallas de rendimiento",
+        "prioridad": "Media",
+        "rol": "Tester",
+        "asignada": true,
+        "miembro": "Ruben",
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Crear prototipo",
+        "descripcion": "Crear nuevo prototipo",
+        "prioridad": "Alta",
+        "rol": "Diseñador",
+        "asignada": true,
+        "miembro": "Eduardo",
+        "estado": "pendiente"
+    }
+]

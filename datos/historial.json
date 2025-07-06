@@ -118,5 +118,35 @@
     "miembro": "Kevin",
     "estado": "pendiente",
     "fecha_eliminacion": "2025-07-05T23:24:40.689229"
+  },
+  {
+    "nombre": "Crear backend del proyecto",
+    "descripcion": "crear backend",
+    "prioridad": "Alta",
+    "rol": "Backend",
+    "asignada": false,
+    "miembro": null,
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-06T10:37:14.409739"
+  },
+  {
+    "nombre": "Probar módulo de pago",
+    "descripcion": "Testear modulo",
+    "prioridad": "Alta",
+    "rol": "Tester",
+    "asignada": true,
+    "miembro": "Hildebrando",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-06T10:38:49.234245"
+  },
+  {
+    "nombre": "Crear prototipo",
+    "descripcion": "Diseñar el prototipo principal",
+    "prioridad": "Alta",
+    "rol": "Diseñador",
+    "asignada": true,
+    "miembro": "Santiago",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-06T10:43:19.825086"
   }
 ]
