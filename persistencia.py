@@ -29,3 +29,6 @@ def cargar_roles(): return cargar_json("roles.json")
 
 def guardar_tareas(tareas): guardar_json("tareas.json", tareas)
 def cargar_tareas(): return cargar_json("tareas.json")
+
+def guardar_tareas(historial): guardar_json("historial.json", historial)
+def cargar_tareas(): return cargar_json("historial.json")

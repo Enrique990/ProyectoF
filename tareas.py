@@ -1,5 +1,7 @@
 import json, os
 from collections import defaultdict
+from datetime import datetime
+
 
 archivo_tareas = "datos/tareas.json"
 tareas = []
@@ -66,3 +68,20 @@ def asignar_tareas_por_rol_y_prioridad(miembros):
             asignadas += 1
     guardar_datos_tareas()
     return asignadas
+
+RUTA_HISTORIAL = "datos/historial.json"
+
+def guardar_en_historial(tarea):
+    tarea = tarea.copy()
+    tarea["fecha_eliminacion"] = datetime.now().isoformat()
+
+    if os.path.exists(RUTA_HISTORIAL):
+        with open(RUTA_HISTORIAL, "r", encoding="utf-8") as archivo:
+            historial = json.load(archivo)
+    else:
+        historial = []
+
+    historial.append(tarea)
+
+    with open(RUTA_HISTORIAL, "w", encoding="utf-8") as archivo:
+        json.dump(historial, archivo, indent=2, ensure_ascii=False)

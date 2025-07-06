@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "nombre": "Enrique",
+        "equipo": {
+            "nombre": "Algoritmos",
+            "miembros": [
+                {
+                    "nombre": "Kevin",
+                    "rol": "Programador",
+                    "tareas": []
+                }
+            ]
+        }
+    },
+    {
+        "nombre": "Juan",
+        "equipo": {
+            "nombre": "Estructuras",
+            "miembros": []
+        }
+    }
+]

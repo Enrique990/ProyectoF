@@ -1,0 +1,122 @@
+[
+  {
+    "nombre": "Proyecto Final",
+    "descripcion": "Terminar el proyecto",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "finalizada",
+    "fecha_eliminacion": "2025-07-05T20:28:15.279559"
+  },
+  {
+    "nombre": "Anotar",
+    "descripcion": "anotar",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "finalizada",
+    "fecha_eliminacion": "2025-07-05T20:30:57.844425"
+  },
+  {
+    "nombre": "anotar nueva",
+    "descripcion": "holaaa",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T20:37:05.645353"
+  },
+  {
+    "nombre": "Intento nuevo",
+    "descripcion": "intento nuevo",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T20:41:29.398074"
+  },
+  {
+    "nombre": "Tarea nueva",
+    "descripcion": "Tarea nueva",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T20:43:50.901888"
+  },
+  {
+    "nombre": "Tarea",
+    "descripcion": "tarea",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T20:49:21.910020"
+  },
+  {
+    "nombre": "Nueva tarea",
+    "descripcion": "intento de nueva tarea",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T21:09:51.187576"
+  },
+  {
+    "nombre": "Barrer",
+    "descripcion": "barrer",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Santiago",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T21:11:06.570548"
+  },
+  {
+    "nombre": "Testear proyecto",
+    "descripcion": "probar el proyecto",
+    "prioridad": "Alta",
+    "rol": "Tester",
+    "asignada": true,
+    "miembro": "Hildebrando",
+    "estado": "en proceso",
+    "fecha_eliminacion": "2025-07-05T23:01:27.299592"
+  },
+  {
+    "nombre": "Prueba",
+    "descripcion": "Probando",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Hildebrando",
+    "estado": "en proceso",
+    "fecha_eliminacion": "2025-07-05T23:12:43.182327"
+  },
+  {
+    "nombre": "Prueba 1",
+    "descripcion": "probando",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": false,
+    "miembro": null,
+    "estado": "en proceso",
+    "fecha_eliminacion": "2025-07-05T23:16:00.362201"
+  },
+  {
+    "nombre": "Prueba ultima",
+    "descripcion": "pruebita",
+    "prioridad": "Alta",
+    "rol": "Programador",
+    "asignada": true,
+    "miembro": "Kevin",
+    "estado": "pendiente",
+    "fecha_eliminacion": "2025-07-05T23:24:40.689229"
+  }
+]
