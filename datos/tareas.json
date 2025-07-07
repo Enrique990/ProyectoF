@@ -1,1 +1,92 @@
-[]
+[
+    {
+        "nombre": "Implementar sistema de login",
+        "descripcion": "Crear autenticación de usuarios",
+        "prioridad": "Alta",
+        "rol": "Programador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Diseñar pantalla de inicio",
+        "descripcion": "Maquetar la interfaz principal",
+        "prioridad": "Media",
+        "rol": "Diseñador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Test de validación de imputs",
+        "descripcion": "Verificar campos obligatorios",
+        "prioridad": "Alta",
+        "rol": "Tester",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Refactorizar módulo de pagos",
+        "descripcion": "Mejorar legibilidad del código",
+        "prioridad": "Baja",
+        "rol": "Programador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Crear prototipo en Figma",
+        "descripcion": "Prototipo visual de la app",
+        "prioridad": "Alta",
+        "rol": "Diseñador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Pruebas de carga",
+        "descripcion": "Simular múltiples usuarios simultáneos",
+        "prioridad": "Media",
+        "rol": "Tester",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Documentación en funciones clave",
+        "descripcion": "Agregar docstrings y comentarios",
+        "prioridad": "Media",
+        "rol": "Programador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Diseñar íconos del menú",
+        "descripcion": "Crear íconos SVG para navegación",
+        "prioridad": "Baja",
+        "rol": "Diseñador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Test de compatibilidad móvil",
+        "descripcion": "Verificar que funcione en distintos móviles",
+        "prioridad": "Alta",
+        "rol": "Tester",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    },
+    {
+        "nombre": "Optimizar consultas SQL",
+        "descripcion": "Mejorar rendimiento de base de datos",
+        "prioridad": "Alta",
+        "rol": "Programador",
+        "asignada": false,
+        "miembro": null,
+        "estado": "pendiente"
+    }
+]

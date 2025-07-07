@@ -1,1 +1,48 @@
-[]
+[
+    {
+        "nombre": "Enrique",
+        "equipo": {
+            "nombre": "Equipo #1",
+            "miembros": [
+                {
+                    "nombre": "Kevin",
+                    "rol": "Programador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Hildebrando",
+                    "rol": "Diseñador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Santiago",
+                    "rol": "Tester",
+                    "tareas": []
+                }
+            ]
+        }
+    },
+    {
+        "nombre": "Alberto",
+        "equipo": {
+            "nombre": "Equipo #2",
+            "miembros": [
+                {
+                    "nombre": "Juan",
+                    "rol": "Programador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Emilio",
+                    "rol": "Diseñador",
+                    "tareas": []
+                },
+                {
+                    "nombre": "Mario",
+                    "rol": "Tester",
+                    "tareas": []
+                }
+            ]
+        }
+    }
+]
